@@ -1,0 +1,34 @@
+ string connetionString = ConfigurationManager.ConnectionStrings["Test"].ConnectionString;
+        string _connectionString;
+        
+         public int ExecuteNonQuery(string Query)
+        {
+            SqlConnection conn;
+            SqlCommand cmd;
+            string sql = null;
+            sql = Query;// "select * from Course where   StartDate < CONVERT(datetime,'" + Date.ToString("MM/dd/yyyy") + "') and courseactive = 1";
+
+            conn = new SqlConnection(connetionString);
+            conn.Open();
+            cmd = new SqlCommand(sql, conn);
+            int Result = cmd.ExecuteNonQuery();
+            return Result;
+
+        }
+
+
+        public DataTable Fillcombo(string Query)
+        {
+            SqlConnection conn;
+            SqlCommand cmd;
+            string sql = null;
+            sql = Query;
+
+            conn = new SqlConnection(connetionString);
+            conn.Open();
+            cmd = new SqlCommand(sql, conn);
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
