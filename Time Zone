@@ -1,0 +1,5 @@
+TimeZoneInfo India_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+DateTime dateTime_India = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, India_Standard_Time);
+
+TimeZoneInfo Saudi_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("Arab Standard Time");
+DateTime dateTime_Saudi = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Saudi_Standard_Time);
