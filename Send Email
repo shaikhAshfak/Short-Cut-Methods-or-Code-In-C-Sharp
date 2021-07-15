@@ -1,0 +1,27 @@
+                using (MailMessage mm = new MailMessage(From, to))
+                {
+                    mm.Subject = subject;
+                    mm.Body = body;
+
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = SMTP;
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(UserName, Password);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = Convert.ToInt32(Port);
+
+                    if (!string.IsNullOrEmpty(Attachment))
+                    {
+                        string imageFile = Attachment;
+                        if (!string.IsNullOrEmpty(imageFile))
+                        {
+                            System.Net.Mail.Attachment attachment;
+                            attachment = new System.Net.Mail.Attachment(imageFile);
+                            mm.Attachments.Add(attachment);
+                        }
+                    }
+
+                    smtp.Send(mm);
+                }
